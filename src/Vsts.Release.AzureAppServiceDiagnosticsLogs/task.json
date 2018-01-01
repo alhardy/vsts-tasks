@@ -1,0 +1,143 @@
+{
+  "id": "0A845E88-E7D2-4E7B-8659-C198A74EE9DD",
+  "name": "azureappservicediagnosticslogs",
+  "friendlyName": "Azure App Service Diagnostics Logs",
+  "description": "Enables Blob Storage Diagnostics Logs for Web Apps",
+  "helpMarkDown": "[More Information](https://github.com/alhardy/vsts-tasks)",
+  "category": "Utility",
+  "author": "Allan Hardy",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [ "azureps" ],
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "minimumAgentVersion": "1.102.0",
+  "groups": [
+    {
+      "name": "output",
+      "displayName": "Output Variables",
+      "isExpanded": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "ConnectedServiceName",
+      "type": "connectedService:AzureRM",
+      "label": "AzureRM Subscription",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Select the Azure Resource Manager subscription."
+    },
+
+    {
+      "name": "StorageAccountRM",
+      "type": "pickList",
+      "label": "RM Storage Account",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify a pre-existing ARM storage account.",
+      "properties": {
+        "EditableOptions": "True"
+      }
+    },
+    {
+      "name": "WebAppName",
+      "type": "pickList",
+      "label": "App Service name",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter or select the name of an existing Azure App Service"
+    },
+    {
+      "name": "ResourceGroupName",
+      "type": "pickList",
+      "label": "Resource group",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter or Select the Azure Resource Group that contains the Azure App Service specified above"
+    },
+    {
+      "name": "ApplicationLogsRetentionDays",
+      "type": "string",
+      "label": "Application logs retension (days)",
+      "defaultValue": "",
+      "required": false,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter the number of days to keep the application logs."
+    },
+    {
+      "name": "ApplicationLogsLogLevel",
+      "type": "string",
+      "label": "Enter the level of application logs to persist.",
+      "defaultValue": "",
+      "required": false,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter the log level of the application logs to persist."
+    },
+    {
+      "name": "HttpLogsRetentionDays",
+      "type": "string",
+      "label": "HTTP logs retension (days)",
+      "defaultValue": "",
+      "required": false,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter the number of days to keep the HTTP logs."
+    },
+    {
+      "name": "HttpLogsLogLevel",
+      "type": "string",
+      "label": "Enter the level of HTTP logs to persist.",
+      "defaultValue": "",
+      "required": false,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter the log level of the HTTP logs to persist."
+    }
+  ],
+  "dataSourceBindings": [
+    {
+      "target": "StorageAccountRM",
+      "endpointId": "$(ConnectedServiceName)",
+      "dataSourceName": "AzureStorageAccountRM"
+    },
+    {
+      "target": "ResourceGroupName",
+      "endpointId": "$(ConnectedServiceName)",
+      "dataSourceName": "AzureRMWebAppResourceGroup",
+      "parameters": {
+        "WebAppName": "$(WebAppName)"
+      }
+    },
+    {
+      "target": "WebAppName",
+      "endpointId": "$(ConnectedServiceName)",
+      "dataSourceName": "AzureRMWebAppNames"
+    }
+  ],
+  "instanceNameFormat": "Enable Azure App Service Diagnostics Logs: $(WebAppName) - $(StorageAccountRM)",
+  "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\Enable-WebAppDiagnosticsLogs.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}

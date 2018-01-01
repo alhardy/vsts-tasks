@@ -1,0 +1,64 @@
+{
+  "manifestVersion": 1,
+  "id": "Azure-App-Service-Diagnostics-Logs",
+  "name": "Azure App Service Diagnostics Logs",
+  "version": "1.0.0",
+  "publisher": "allanhardy",
+  "public": false,
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Release task",
+  "categories": [
+    "Build and release"
+  ],
+  "tags": [
+    "Logs",
+    "Azure",
+    "App Service",
+    "Web App"
+  ],
+  "content": {
+    "details": {
+      "path": "Vsts.Release.AzureAppServiceDiagnosticsLogs.Extension/readme.md"
+    },
+    "license": {
+      "path": "Vsts.Release.AzureAppServiceDiagnosticsLogs.Extension/LICENSE"
+    }
+  },
+  "links": {
+    "getstarted": {
+      "uri": "https://github.com/alhardy/vsts-tasks"
+    },
+    "support": {
+      "uri": "https://github.com/alhardy/vsts-tasks"
+    }
+  },
+  "branding": {
+    "color": "rgb(48, 113, 178)",
+    "theme": "dark"
+  },
+  "icons": {
+    "default": "Vsts.Release.AzureAppServiceDiagnosticsLogs.Extension/Images/Icon128.png"
+  },
+  "files": [
+    {
+      "path": "Vsts.Release.AzureAppServiceDiagnosticsLogs"
+    }
+  ],
+
+  "contributions": [
+    {
+      "id": "Vsts.Release.AzureAppServiceDiagnosticsLogs",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Vsts.Release.AzureAppServiceDiagnosticsLogs"
+      }
+    }
+  ]
+}
