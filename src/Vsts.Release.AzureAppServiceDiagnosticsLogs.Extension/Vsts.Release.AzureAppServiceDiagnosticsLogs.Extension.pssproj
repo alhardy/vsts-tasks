@@ -26,6 +26,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="..\..\LICENSE">
+      <Link>LICENSE</Link>
+    </Content>
     <Content Include="Images/Icon128.png" />
   </ItemGroup>
   <ItemGroup>
