@@ -1,0 +1,118 @@
+{
+  "id": "38E6EBB9-4DAC-4279-A929-604DEFDCAB05",
+  "name": "azurecosmosdbensuredatabase",
+  "friendlyName": "Azure CosmosDB Ensure Database",
+  "description": "Ensures that an Azure CosmosDB Database exists or creates a new Database",
+  "helpMarkDown": "[More Information](https://github.com/alhardy/vsts-tasks)",
+  "category": "Utility",
+  "author": "Allan Hardy",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [ "azureps" ],
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "minimumAgentVersion": "1.102.0",
+  "groups": [
+    {
+      "name": "output",
+      "displayName": "Output Variables",
+      "isExpanded": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "ConnectedServiceName",
+      "type": "connectedService:AzureRM",
+      "label": "AzureRM Subscription",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Select the Azure Resource Manager subscription."
+    },
+    {
+      "name": "ResourceGroupName",
+      "type": "pickList",
+      "label": "Resource group",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter or Select the Azure Resource Group that contains the Azure CosmosDB Account."
+    },
+    {
+      "name": "CosmosDBAccount",
+      "type": "string",
+      "label": "CosmosDB Account",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify a pre-existing CosmosDB account.",
+      "properties": {
+        "EditableOptions": "True"
+      }
+    },
+    {
+      "name": "DatabaseName",
+      "type": "string",
+      "label": "CosmosDB Database name",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter or select the name of the CosmosDB to create."
+    },
+    {
+      "name": "CollectionName",
+      "type": "string",
+      "label": "CosmosDB Database Collection name",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter or select the name of the CosmosDB database collection to create."
+    },
+    {
+      "name": "CollectionPartitionKey",
+      "type": "string",
+      "label": "CosmosDB Database Collection partition key",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter or select the name of the CosmosDB database collection partition key."
+    },
+    {
+      "name": "CollectionRUs",
+      "type": "string",
+      "label": "CosmosDB Database Collection RUs",
+      "defaultValue": "",
+      "required": true,
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "helpMarkDown": "Enter or select the name of the CosmosDB database collection RUs."
+    }
+  ],
+  "dataSourceBindings": [
+    {
+      "target": "ResourceGroupName",
+      "endpointId": "$(ConnectedServiceName)",
+      "dataSourceName": "AzureResourceGroups"
+    }
+  ],
+  "instanceNameFormat": "Ensure Azure CosmosDB Database: $(DatabaseName) - $(DatabaseName)",
+  "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\Ensure-CosmosDbDatabase.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}

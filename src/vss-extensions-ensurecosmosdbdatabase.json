@@ -1,0 +1,62 @@
+{
+  "manifestVersion": 1,
+  "id": "Azure-CosmosDB-Ensure-Database",
+  "name": "Azure CosmosDB Ensure Database",
+  "version": "1.0.0",
+  "publisher": "allanhardy",
+  "public": false,
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "Release task",
+  "categories": [
+    "Build and release"
+  ],
+  "tags": [
+    "Azure",
+    "CosmosDB"
+  ],
+  "content": {
+    "details": {
+      "path": "Vsts.Release.EnsureCosmosDbDatabase.Extension/readme.md"
+    },
+    "license": {
+      "path": "Vsts.Release.EnsureCosmosDbDatabase.Extension/LICENSE"
+    }
+  },
+  "links": {
+    "getstarted": {
+      "uri": "https://github.com/alhardy/vsts-tasks"
+    },
+    "support": {
+      "uri": "https://github.com/alhardy/vsts-tasks"
+    }
+  },
+  "branding": {
+    "color": "rgb(48, 113, 178)",
+    "theme": "dark"
+  },
+  "icons": {
+    "default": "Vsts.Release.EnsureCosmosDbDatabase.Extension/Images/Icon128.png"
+  },
+  "files": [
+    {
+      "path": "Vsts.Release.EnsureCosmosDbDatabase"
+    }
+  ],
+
+  "contributions": [
+    {
+      "id": "Vsts.Release.EnsureCosmosDbDatabase",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "Vsts.Release.EnsureCosmosDbDatabase"
+      }
+    }
+  ]
+}

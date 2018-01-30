@@ -10,6 +10,14 @@
 
 VSTS requires build tasks to be installed via a VSIX. To build the VSIX run the following:
 
+### App Service Diagnostics Logs
+
 ```console
-tfx extension create --manifest-globs vss-extensions.json
+tfx extension create --manifest-globs vss-extensions-appservicediagnosticslogs.json
+```
+
+### Create CosmosDB
+
+```console
+tfx extension create --manifest-globs vss-extensions-ensurecosmosdbdatabase.json
 ```
